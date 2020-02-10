@@ -25,7 +25,8 @@ namespace AspNetSelfHostDemo
                 var password = usernamePasswordArray[1];
 
                 // Replace this with your own system of security / means of validating credentials
-                var isValid = userName == "edge" && password == "edgewords";
+                //var isValid = userName == "edge" && password == "edgewords";
+                var isValid = userName == Program.uName && password == Program.uPwd;
 
                 if (isValid)
                 {
