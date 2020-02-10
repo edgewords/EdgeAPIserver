@@ -7,8 +7,8 @@
     <ProjectGuid>{D2E9F373-300F-401F-8C3F-C58D57392655}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AspNetSelfHostDemo</RootNamespace>
-    <AssemblyName>AspNetSelfHostDemo</AssemblyName>
+    <RootNamespace>EdgeAPIserver</RootNamespace>
+    <AssemblyName>EdgeAPIserver</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
