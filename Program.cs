@@ -10,6 +10,7 @@ namespace AspNetSelfHostDemo
 {
     class Program
     {
+        //set the default url, port number & username & password
         public static string baseURL = "http://localhost:2002";
         public static string port = "2002";
         public static string uName = "edge";
@@ -17,7 +18,7 @@ namespace AspNetSelfHostDemo
 
         static void Main(string[] args)
         {
-            
+            //check commandline args, if so change port number etc. to what's been passed in
             if (args.Length == 1)
             {
                 baseURL = "http://localhost:" + args[0];
@@ -34,13 +35,15 @@ namespace AspNetSelfHostDemo
                 uPwd = args[2];
             }
    
-                
+            //start the service using the 'Startup' class configuration 
             try
             {
                 WebApp.Start<Startup>(baseURL);
                 Console.WriteLine("Copyright 2020 Edgewords Ltd.");
                 Console.WriteLine("REST Server Started at {0}/api/products or /api/users", baseURL);
                 Console.WriteLine("/api/users requires basic_auth user='{0}' password='{1}'", uName,uPwd);
+                Console.WriteLine("To change ports, run from cmnd line EdgeAPIserver.exe <port_num>");
+                Console.WriteLine("To change username/password, run from cmnd line EdgeAPIserver.exe <port_num> <username> <password>");
                 Console.WriteLine("Close Window to stop listening and exit.");
                 Console.ReadKey();
             }

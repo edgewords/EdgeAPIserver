@@ -1,4 +1,6 @@
-﻿using System;
+﻿//This sets all the configuration for the web service
+//wrapped up in a 'Startip' object, called by the Main Program.cs
+using System;
 using System.Web.Http;
 using Microsoft.Owin;
 using Newtonsoft.Json.Serialization;
@@ -34,13 +36,11 @@ namespace AspNetSelfHostDemo
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
 
-            //add our filter to enforce basic auth globally
-            //we have not done this, as we just decorate the controller we want to appy basic auth to
-            //with [BasicAuthentication]
-
+            //add our filter to enforce basic auth globally (if below uncommented)
+            //we have not done this, as we just decorate the controller we want to appy basic auth to with [BasicAuthentication]
             //config.Filters.Add(new BasicAuthenticationAttribute());
 
-            // Build Web Api
+            // Build Web Api configuration
             app.UseWebApi(config);
         }
     }

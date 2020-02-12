@@ -1,4 +1,5 @@
-﻿using System;
+﻿//This Class is used to setup basic authentication against the web service
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Security.Principal;

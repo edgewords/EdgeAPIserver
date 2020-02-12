@@ -1,4 +1,5 @@
-﻿using System;
+﻿//This is the Controller for the Users http://localhost:2002/api/users
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,21 +10,23 @@ using System.Web.Http;
 
 namespace AspNetSelfHostDemo
 {
+    //simple object to store a user
     public class User
     {
         public int userID { get; set; }
         public string userName { get; set; }
     }
 
-    //enforce basic auth for any of the users class
+    //now create a contorller for our /users service
+    //enforce basic auth for access to the users class
     [BasicAuthentication]
     public class UsersController : ApiController
     {
-        private static List<User> Users;
+        private static List<User> Users; //just using a simple List object to store users in
 
         private static int idCounter = 4; // counter for adding products to give them a unique id
 
-        // Consturctor - just used to add some default users to the user list
+        // Consturctor - just used to add some default users to the user list (3 users)
         static UsersController()
         {
             Users = new List<User>();
@@ -35,7 +38,7 @@ namespace AspNetSelfHostDemo
         //[HttpGet]
         public IEnumerable<User> Get()
         {
-            return Users;
+            return Users; //simply return our users List object, the service does the rest (converts to json)
         }
 
         // GET api/users/2
@@ -55,9 +58,9 @@ namespace AspNetSelfHostDemo
         {
             try
             {
-                user.userID = idCounter;
+                user.userID = idCounter; //set the user ID to our current counter
                 Users.Add(user);
-                idCounter++;
+                idCounter++; //increase the counter so next user created has unique ID
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user); // 201
                 return response;
             }
