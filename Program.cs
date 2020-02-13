@@ -13,8 +13,9 @@ namespace AspNetSelfHostDemo
         //set the default url, port number & username & password
         public static string baseURL = "http://localhost:2002";
         public static string port = "2002";
-        public static string uName = "edge";
-        public static string uPwd = "edgewords";
+        //public static string uName = "edge";
+        //public static string uPwd = "edgewords";
+        public static string resFormat = "json";
 
         static void Main(string[] args)
         {
@@ -23,6 +24,12 @@ namespace AspNetSelfHostDemo
             {
                 baseURL = "http://localhost:" + args[0];
             }
+            else if (args.Length == 2)
+            {
+                baseURL = "http://localhost:" + args[0];
+                resFormat = args[1];
+            }
+            /*
             else if (args.Length == 2)
             {
                 uName = args[0];
@@ -34,6 +41,7 @@ namespace AspNetSelfHostDemo
                 uName = args[1];
                 uPwd = args[2];
             }
+            */
    
             //start the service using the 'Startup' class configuration 
             try
@@ -41,9 +49,11 @@ namespace AspNetSelfHostDemo
                 WebApp.Start<Startup>(baseURL);
                 Console.WriteLine("Copyright 2020 Edgewords Ltd.");
                 Console.WriteLine("REST Server Started at {0}/api/products or /api/users", baseURL);
-                Console.WriteLine("/api/users requires basic_auth user='{0}' password='{1}'", uName,uPwd);
+                //Console.WriteLine("/api/users requires basic_auth user='{0}' password='{1}'", uName,uPwd);
+                Console.WriteLine("/api/users requires basic_auth user='edge' password='edgewords'");
                 Console.WriteLine("To change ports, run from cmnd line EdgeAPIserver.exe <port_num>");
-                Console.WriteLine("To change username/password, run from cmnd line EdgeAPIserver.exe <port_num> <username> <password>");
+                Console.WriteLine("To change xml/json, run from cmnd line EdgeAPIserver.exe <port_num> json/xml");
+                Console.WriteLine("The default is json");
                 Console.WriteLine("Close Window to stop listening and exit.");
                 Console.ReadKey();
             }

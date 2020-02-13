@@ -29,12 +29,21 @@ namespace AspNetSelfHostDemo
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            // we remove the default xml formatter & force json formatting as default
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
-            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+            // force either XML or JSON as a response format
+            //you could comment all this out & it will automatically return xml or json depending on the Accept or Content-Type header
+            if (Program.resFormat == "xml")
+            {
+                //we remove the json formatter to force response to XML
+                config.Formatters.Remove(config.Formatters.JsonFormatter);
+            }
+            else
+            {
+                // we remove the default xml formatter & force json formatting as default
+                config.Formatters.Remove(config.Formatters.XmlFormatter);
+                config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+                config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+            }
 
             //add our filter to enforce basic auth globally (if below uncommented)
             //we have not done this, as we just decorate the controller we want to appy basic auth to with [BasicAuthentication]
