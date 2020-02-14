@@ -2,7 +2,10 @@
 //wrapped up in a 'Startip' object, called by the Main Program.cs
 using System;
 using System.Web.Http;
+using EdgeAPIserver;
 using Microsoft.Owin;
+using Microsoft.Owin.FileSystems;
+using Microsoft.Owin.StaticFiles;
 using Newtonsoft.Json.Serialization;
 using Owin;
 
@@ -51,6 +54,19 @@ namespace AspNetSelfHostDemo
 
             // Build Web Api configuration
             app.UseWebApi(config);
+
+            // File Server seup
+            // 
+            var options = new FileServerOptions
+            {
+                EnableDirectoryBrowsing = true,
+                EnableDefaultFiles = true,
+                DefaultFilesOptions = { DefaultFileNames = { "index.html" } },
+                FileSystem = new PhysicalFileSystem("Assets"),
+                StaticFileOptions = { ContentTypeProvider = new CustomContentTypeProvider() }
+            };
+
+            app.UseFileServer(options);
         }
     }
 }

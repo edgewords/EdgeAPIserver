@@ -54,6 +54,7 @@ namespace AspNetSelfHostDemo
                 Console.WriteLine("To change ports, run from cmnd line EdgeAPIserver.exe <port_num>");
                 Console.WriteLine("To change xml/json, run from cmnd line EdgeAPIserver.exe <port_num> json/xml");
                 Console.WriteLine("The default is json");
+                Console.WriteLine("File server functions can be used at {0}", baseURL);
                 Console.WriteLine("Close Window to stop listening and exit.");
                 Console.ReadKey();
             }
