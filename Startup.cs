@@ -55,8 +55,8 @@ namespace AspNetSelfHostDemo
             // Build Web Api configuration
             app.UseWebApi(config);
 
-            // File Server seup
-            // 
+            // File Server setup
+            // use the default url to provide an index.html with a couple of files you can download
             var options = new FileServerOptions
             {
                 EnableDirectoryBrowsing = true,
